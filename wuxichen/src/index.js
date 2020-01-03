@@ -1,42 +1,25 @@
 
-import React from './react';
-import ReactDOM from './react-dom';
 
-//let element = <h1 id='hello'><span>hello</span><span>world</span></h1>
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// React.createElement("h1", {
-//     id: "hello"
-//   },
-//    React.createElement("span", null, "hello"),
-//     React.createElement("span", null, "world"));
+import {HashRouter as Router,Route,Link,Switch} from 'react-router-dom';
 
+import Home from './components/Home';
+import User from './components/User';
+import Profile from './components/Profile';
 
-// function Welcome(props){
-//     return (
-//         <h1 id={props.id}><span>hello</span><span>world</span></h1>
-//     )
-// }
-
-// class Welcome extends React.component{
-//     constructor(props){
-//         super(props)
-//     }
-//     render(){
-//         return  <h1 id={this.props.id}><span>hello</span><span>world</span></h1>
-//     }
-// }
-
-// let element = React.createElement("h1", {
-//         id: "hello"
-//       },
-//        React.createElement("span", {style:{color:"red",backgroundColor:"yellow"}}, "hello"),
-//         React.createElement("span", {className:"world"}, "world"));
-      
-
-// let element =  React.createElement(Welcome,{id:"111"})
+ReactDOM.render(
+    <Router>
+        <Link to="/">Home</Link>
+        <Link to="/user">User</Link>
+        <Link to="/profile">Profile</Link>
+        <Switch>
+            <Route exact={true} path="/" component={Home}></Route>
+            <Route path="/user" component={User}></Route>
+            <Route path="/profile" component={Profile}></Route>
+            <Route path="/user" component={User}></Route>
+        </Switch>
        
-ReactDOM.render(element, document.getElementById('root'));
-
-
-
-
+    </Router>
+,document.getElementById("root"))

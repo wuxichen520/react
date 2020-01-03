@@ -18,19 +18,16 @@ function render(node,parent){
     let type,props;
     type = node.type; //h1 Function ClassComponent
     props = node.props
-    if(typeof type == 'function'){  //函数组件
-      let newElement =   type(props)
-    //   console.log(newElement)
-      type = newElement.type;
-      props = newElement.props
-    }
     if(type.isReactComponent){ //类组件
         let ele =  new type(props).render();
         type = ele.type;
         props = ele.props
+    }else if(typeof type == 'function'){  //函数组件
+      let newElement =   type(props)
+      type = newElement.type;
+      props = newElement.props
     }
     let domElement =  document.createElement(type)
-   
     for(let proName in props){
    
         if(proName == 'children'){
@@ -44,9 +41,13 @@ function render(node,parent){
         }else if(proName == 'style'){//值就是一个行内的样式对象
             let styleObject = props.style;  
             for(let attr in styleObject){
-             
                 domElement.style[attr] = styleObject[attr]
             }
+
+            // let cssText = Object.keys(styleObject).map(attr=>{
+            //     return `${attr.replace(/A-Z/g,()=>{return "-"+arguments[1].toLowerCase})}:${styleObject[attr]}`
+            // }).join(";")
+            // domElement.style.cssText=cssText
         }else{
             domElement.setAttribute(proName,props[proName])
         }

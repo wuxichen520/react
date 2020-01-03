@@ -16,13 +16,13 @@ class Component {
             this.props = props;
         }
         static isReactComponent = true
-    }
+}
 function createElement(type,config,children){
     let props = {}
     for(let k in config){
         props[k] = config[k]
     }
-    console.log(type,"type")
+
     const childrenLength = arguments.length-2
     if(childrenLength == 1){ ////如果说只有一个儿子的话，那么props.children是一个对象,也就是一个ReactNode
         props.children = children

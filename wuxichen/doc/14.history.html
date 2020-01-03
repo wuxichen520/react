@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta0
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>React App</title>
+  </head>
+  <style>
+    div{
+     margin: 5px;
+     padding: 5px;
+    }
+  </style>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+    
+
+    <script>
+      (function(history){
+        let pushState = history.pushState
+        history.pushState = function(state,title,url){
+          pushState.call(history,state,title,url)
+            if(typeof window.onpushstate == 'function'){
+              window.onpushstate(state,title,url)
+            }
+        }
+      })(window.history)
+
+
+        //window.history 这是浏览器原生提供的对象，用来让我们通过它操作会话容器
+        setTimeout(() => {
+        //pushState方法是不会触发事件的
+          window.history.pushState({ page: 1 }, 'page1', '/page1');
+        }, 1000);
+        setTimeout(() => {
+        //pushState方法是不会触发事件的
+          window.history.pushState({ page: 2 }, 'page2', '/page2');
+        }, 2000);
+        setTimeout(() => {
+        //pushState方法是不会触发事件的
+          window.history.pushState({ page: 3 }, 'page3', '/page3');
+        }, 3000);
+        setTimeout(() => {
+          //向前回退
+          window.history.go(-1)
+        }, 4000);
+      
+
+        window.onpopstate = function (event) {
+        //type=popstate  当前history的状态  浏览器回退触发的事件
+          console.log({ type: event.type, state: event.state, pathname: window.location.pathname });
+          root.innerHTML = window.location.pathname;
+      }
+      window.onpushstate = function (event) {
+        //type=popstate  当前history的状态  浏览器回退触发的事件
+        root.innerHTML = window.location.pathname;
+      }
+    </script>
+  </body>
+</html>
