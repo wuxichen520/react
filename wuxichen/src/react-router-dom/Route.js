@@ -16,10 +16,10 @@ export default class Route extends React.Component{
         let pathname = this.context.location.pathname;
         let paramNames = [];
 
-        let rex = pathToRegexp(path,paramNames,{end:exact});
+        let rex = pathToRegexp(path,paramNames,{end:!!exact});
         // if((exact && pathname === path) || (!exact && pathname.startsWith(path))){
         if(rex.test(pathname)){
-            return <RouteComponent />
+            return <RouteComponent history={this.context.history}/>
         }else{
             return null
         }
