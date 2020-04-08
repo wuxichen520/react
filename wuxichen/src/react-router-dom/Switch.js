@@ -23,7 +23,8 @@ export default function (props){
         let regexp =  pathToRegexp(path,[],{end: !!exact});
         let matched = pathname.match(regexp);
         if(matched){
-            return child
+            console.log(child)
+            return child  //虚拟dom
         }
     }
     return (

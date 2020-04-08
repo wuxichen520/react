@@ -10,8 +10,10 @@ import User from './components/User';
 import Profile from './components/Profile';
 
 ReactDOM.render(
-    <Router>
-        <Link to="/">Home</Link>
+    // router  传递history.location 以及 history.push  
+    <Router>    
+        {/* 调用history.push 将to的参数传入 */}
+        <Link to="/">Home</Link>   
         <Link to="/user">User</Link>
         <Link to="/profile">Profile</Link>
         <Switch>

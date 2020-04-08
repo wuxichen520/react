@@ -8,8 +8,8 @@ export default function Link(props){
             {
              
                 routerValue=>(
-                 
-                    <a onClick={()=>routerValue.history.push(props.to)}>{props.children}</a>
+                   //console.log(props.children),
+                   <a onClick={()=>routerValue.history.push(props.to)}>{props.children}</a>
                 )
             }
         </RouterContext.Consumer>

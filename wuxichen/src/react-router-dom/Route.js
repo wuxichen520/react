@@ -12,10 +12,11 @@ export default class Route extends React.Component{
     static contextType = RouterContext  //this.context.location.pathname
 
     render() {
+        console.log(this.props)
         let {path ,component:RouteComponent,exact} = this.props;
         let pathname = this.context.location.pathname;
         let paramNames = [];
-
+        console.log(RouteComponent)
         let rex = pathToRegexp(path,paramNames,{end:!!exact});
         // if((exact && pathname === path) || (!exact && pathname.startsWith(path))){
         if(rex.test(pathname)){
