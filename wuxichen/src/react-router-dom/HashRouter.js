@@ -30,8 +30,14 @@ export default class HashRouter extends React.Component{
     render(){
         let history = {
             location:this.state.location,
-            push(path,state){
-                window.location.hash = path
+            push(to){
+                if(typeof to == "object"){
+                    let {pathname,state} = to;
+                    window.location.hash = pathname
+                }else{
+                    window.location.hash = to;
+                }
+                
             }
         }
         let routerValue = {

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Link, Route, Switch, Redirect,Router } from '../react-router-dom';
 import UserAdd from './UserAdd';
 import UserList from './UserList';
-
+import UseDetails from './UseDetails';
 export default function(props){
     return (
        
@@ -18,7 +18,7 @@ export default function(props){
              
                     <Route path="/user/list" component={UserList} />
                     <Route path="/user/add" component={UserAdd} />
-                
+                    <Route path="/user/details/:id" component={UseDetails} />
             </div>
         </div>
        

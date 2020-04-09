@@ -12,15 +12,30 @@ export default class Route extends React.Component{
     static contextType = RouterContext  //this.context.location.pathname
 
     render() {
-        console.log(this.props)
+        //console.log(this.props)
         let {path ,component:RouteComponent,exact} = this.props;
         let pathname = this.context.location.pathname;
         let paramNames = [];
-        console.log(RouteComponent)
         let rex = pathToRegexp(path,paramNames,{end:!!exact});
+        let props = {
+            history:this.context.history,
+            // location:this.context.location
+        }
         // if((exact && pathname === path) || (!exact && pathname.startsWith(path))){
         if(rex.test(pathname)){
-            return <RouteComponent history={this.context.history}/>
+            // paramNames = paramNames.map(item=>item.name);
+            // // let [url,...values] = result
+            // let params = {};
+            // for(let i = 0; i<paramNames.length;i++){
+            //     params[paramNames[i]] = values[i]
+            // }
+            // props.match = {
+            //     path,
+            //     url,
+            //     isExact:url === pathname,
+            //     params
+            // }
+            return <RouteComponent {...props}/>
         }else{
             return null
         }
