@@ -19,11 +19,12 @@ export default function (props){
          * React.createElement(Route,{exact,path,component})
              {type:Route,props:{exact,path,component}}
          */
+        let params = [];
         let {path="/",component,exact} = child.props;
-        let regexp =  pathToRegexp(path,[],{end: !!exact});
+        let regexp =  pathToRegexp(path,params,{end: !!exact});
         let matched = pathname.match(regexp);
         if(matched){
-            console.log(child)
+            //console.log(child)
             return child  //虚拟dom
         }
     }
