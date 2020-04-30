@@ -1,6 +1,6 @@
-import { TEXT, ELEMENT,CLASS_COMPONENT,FUNCTION_COMPONENT } from './constants';
+import { TEXT, ELEMENT } from './constants';
 import { ReactElement } from './vdom';
-import {Component} from './component'
+
 
 function createElement(type, config = {}, ...children) {   // 虚拟dpm
     delete config.__source;
@@ -9,14 +9,6 @@ function createElement(type, config = {}, ...children) {   // 虚拟dpm
     let $$typeof = null;
     if (typeof type === 'string') { // span  div button
         $$typeof = ELEMENT;
-    }
-    //说明这个类型是个类组件
-    else if(typeof type === 'function' && type.prototype.isReactComponent){
-        $$typeof = CLASS_COMPONENT;
-    }
-     //说明这个类型是个函数组件
-    else if(typeof type === 'function'){
-        $$typeof = FUNCTION_COMPONENT;
     }
     props.children = children.map(item => 
         {
@@ -31,8 +23,6 @@ function createElement(type, config = {}, ...children) {   // 虚拟dpm
 }
 
 const React = {
-    createElement,
-    Component
+    createElement
 }
-export {Component}
 export default React;
