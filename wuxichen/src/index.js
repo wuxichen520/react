@@ -8,11 +8,14 @@ class Counter extends React.Component{
            super(props)
            this.state = {number:0}
 
-        //    setInterval(() => {
-        //        this.setState({number:this.state.number+1})
-        //    },1000);
+           setInterval(() => {
+               this.setState({number:this.state.number+1})
+               console.log(this.state.number)
+           },1000);
+           
        }
        render(){
+           
            return <div id={'counter' +this.state.number}></div>
        }
 }
